@@ -76,10 +76,13 @@ interface Props {
 
   prevButton?: ReactElement;
   nextButton?: ReactElement;
+
+  disableDrag?: boolean;
+  disableScroll?: boolean; 
 }
 
 
-export const FlexCarousel: React.FC<Props> = ({ isBanner, displayButton, playOnInit, items, slide_min_width, delay, IDs, setSelectedID, loop, otherTransparent, autoScroll, prevButton, nextButton }) => {
+export const FlexCarousel: React.FC<Props> = ({ isBanner, displayButton, playOnInit, items, slide_min_width, delay, IDs, setSelectedID, loop, otherTransparent, autoScroll, prevButton, nextButton, disableDrag, disableScroll }) => {
   const options: EmblaOptionsType = { loop: loop ?? true, skipSnaps: true, axis: 'x', dragFree: false}
   const [isPlaying, setIsPlaying] = useState(false)
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
@@ -103,26 +106,27 @@ export const FlexCarousel: React.FC<Props> = ({ isBanner, displayButton, playOnI
   const [wheelScrollSnaps, setWheelScrollSnaps] = useState<number[]>([])
 
   useEffect(() => {
-    const autoplay: any = emblaApi?.plugins()?.autoplay
-    const wheelScroll = emblaApi?.plugins()?.wheelGestures
-    if (!autoplay || !wheelScroll) return
-
-    setIsPlaying(autoplay.isPlaying())
-    emblaApi
-      .on('autoplay:play', () => setIsPlaying(playOnInit === undefined ? false : playOnInit))
-      .on('autoplay:stop', () => setIsPlaying(false))
-      .on('reInit', () => setIsPlaying(autoplay.isPlaying()))
-
-    const onSelect = () => {
-      setWheelSelectedIndex(emblaApi.selectedScrollSnap())
-      setPrevBtnEnabled(emblaApi.canScrollPrev())
-      setNextBtnEnabled(emblaApi.canScrollNext())
+    if(!disableDrag){
+      const autoplay: any = emblaApi?.plugins()?.autoplay
+      const wheelScroll = emblaApi?.plugins()?.wheelGestures
+      if (!autoplay || !wheelScroll) return
+  
+      setIsPlaying(autoplay.isPlaying())
+      emblaApi
+        .on('autoplay:play', () => setIsPlaying(playOnInit === undefined ? false : playOnInit))
+        .on('autoplay:stop', () => setIsPlaying(false))
+        .on('reInit', () => setIsPlaying(autoplay.isPlaying()))
+  
+      const onSelect = () => {
+        setWheelSelectedIndex(emblaApi.selectedScrollSnap())
+        setPrevBtnEnabled(emblaApi.canScrollPrev())
+        setNextBtnEnabled(emblaApi.canScrollNext())
+      }
+  
+      setWheelScrollSnaps(emblaApi.scrollSnapList())
+      emblaApi.on('select', onSelect)
+      onSelect()
     }
-
-    setWheelScrollSnaps(emblaApi.scrollSnapList())
-    emblaApi.on('select', onSelect)
-    onSelect()
-
   }, [emblaApi])
 
   useEffect(() => {

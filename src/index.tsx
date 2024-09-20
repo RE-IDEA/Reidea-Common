@@ -45,6 +45,7 @@ export {SlideInOut as SlideInOut} from "./Animation/SlideInOut";
 //   const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
 //   const object = <Box width={400} height={100} bgcolor={"grey"}/> 
 //   const [gridCols, setGridCols] = useState<number>(window.innerWidth < 1000 ? 3 : 4);
+  
 //   useEffect(() => {
 //     const handleResize = () => {
 //       setGridCols(window.innerWidth < 1000 ? 3 : 4);
@@ -95,8 +96,8 @@ export {SlideInOut as SlideInOut} from "./Animation/SlideInOut";
 //       </Stack>
 
 //       <h3>FlexCarousel</h3>
-//       <FlexCarousel 
-//         displayButton={false} isBanner={false} slide_min_width={440} autoScroll={true}
+//       <FlexCarousel disableDrag
+//         displayButton={false} isBanner={false} slide_min_width={440} autoScroll={false}
 //         items={[object, object, object, object, object, object]} 
 //       />
 
