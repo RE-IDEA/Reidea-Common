@@ -7,6 +7,7 @@ import { BaseButton, BaseTextField, MailTextField, PhoneTextField, FlexCarousel,
 import { Box, Stack } from '@mui/material';
 import { UserIcon } from './Icon/UserIcon';
 import { FlexDrawer } from './Drawer/FlexDrawer';
+import { PasswordTextField } from './TextField/PasswordTextField';
 
 
 // Button
@@ -22,6 +23,7 @@ export {FlexDrawer as FlexDrawer} from "./Drawer/FlexDrawer"
 export {BaseTextField as BaseTextField} from "./TextField/base/BaseTextField"
 export {MailTextField as MailTextField} from "./TextField/MailTextField"
 export {PhoneTextField as PhoneTextField} from "./TextField/PhoneTextField"
+export {PasswordTextField as PasswordTextField} from "./TextField/PasswordTextField"
 
 // Carousel Layout
 export {FlexCarousel as FlexCarousel} from "./Carousel/FlexCarousel"
@@ -71,11 +73,15 @@ export {SlideInOut as SlideInOut} from "./Animation/SlideInOut";
 //         </Stack>
 //         <Stack width={"100%"}>
 //             <h3>MailTextField</h3>
-//             <MailTextField width='100%' value={value} setValue={setValue} error={error} setError={setError} errorText='エラー' placeholder="Enter email" />
+//             <MailTextField width='100%' value={value} setValue={setValue} error={false} setError={undefined} errorText='エラー' placeholder="Enter email" />
 //         </Stack>
 //         <Stack width={"100%"}>
 //             <h3>PhoneTextField</h3>
 //             <PhoneTextField width='100%' value={value} setValue={setValue} error={false} setError={undefined} errorText='エラー' placeholder="Enter phone number" />
+//         </Stack>
+//         <Stack width={"100%"}>
+//             <h3>PasswordTextField</h3>
+//             <PasswordTextField width='100%' value={value} setValue={setValue} error={error} setError={setError} errorText='エラー' placeholder="Enter valid password" />
 //         </Stack>
 //       </Stack>
 
