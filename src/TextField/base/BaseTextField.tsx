@@ -38,7 +38,9 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = (props) => {
         type, 
         unit, 
         customInputProps, 
-        onKeyEnterAndMeta 
+        onKeyEnterAndMeta,
+        endAdormentComponent,
+        startAdormentComponent
     } = props;
 
 
@@ -80,7 +82,8 @@ export const BaseTextField: React.FC<BaseTextFieldProps> = (props) => {
                 '& .Mui-focused .MuiOutlinedInput-notchedOutline': { border: "none",},
                 }}
                 InputProps={{
-                    endAdornment: unit ? <InputAdornment position="end" sx={{paddingRight: "20px", fontSize:fontSize ?? 16}}>{unit}</InputAdornment> : undefined,
+                    startAdornment: startAdormentComponent ?? undefined,
+                    endAdornment: endAdormentComponent ?? (unit ? <InputAdornment position="end" sx={{paddingRight: "20px", fontSize:fontSize ?? 16}}>{unit}</InputAdornment> : undefined),
                     ...customInputProps, // Spread custom InputProps here
                 }}
                 inputProps={{

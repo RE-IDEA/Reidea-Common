@@ -65,7 +65,7 @@
   border-radius: 50%;
 }
 .banner__dot:after {
-  background-color: #C2C2C2;
+  /* background-color: #C2C2C2; */
   width: 1.4rem;
   height: 1.4rem;
   border-radius: 50%;

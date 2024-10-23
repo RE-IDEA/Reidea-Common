@@ -76,13 +76,14 @@ interface Props {
 
   prevButton?: ReactElement;
   nextButton?: ReactElement;
+  selectedDotButtonStyle?: React.CSSProperties;
 
   disableDrag?: boolean;
   disableScroll?: boolean; 
 }
 
 
-export const FlexCarousel: React.FC<Props> = ({ isBanner, displayButton, playOnInit, items, slide_min_width, delay, IDs, setSelectedID, loop, otherTransparent, autoScroll, prevButton, nextButton, disableDrag, disableScroll }) => {
+export const FlexCarousel: React.FC<Props> = ({ isBanner, displayButton, playOnInit, items, slide_min_width, delay, IDs, setSelectedID, loop, otherTransparent, autoScroll, prevButton, nextButton, disableDrag, selectedDotButtonStyle, disableScroll }) => {
   const options: EmblaOptionsType = { loop: loop ?? true, skipSnaps: true, axis: 'x', dragFree: false}
   const [isPlaying, setIsPlaying] = useState(false)
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
@@ -200,9 +201,11 @@ export const FlexCarousel: React.FC<Props> = ({ isBanner, displayButton, playOnI
                 <BannerCarouselDotButton
                   key={index}
                   onClick={() => onDotButtonClick(index)}
-                  className={'banner__dot'.concat(
-                    index === selectedIndex ? ' banner__dot--selected' : ''
-                  )}
+                  className={'banner__dot'}
+                  style={{
+                    backgroundColor: index === selectedIndex ? '#383E86' : '#C2C2C2', // 選択された場合のスタイル  
+                    ...(index === selectedIndex  ? selectedDotButtonStyle : {})
+                  }}
                 />
               )
             })}

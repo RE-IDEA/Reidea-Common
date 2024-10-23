@@ -45,5 +45,7 @@ export interface BaseTextFieldProps {
     type?: string;
     unit?: string;
     customInputProps?: Partial<StandardInputProps | OutlinedInputProps>;
+    startAdormentComponent?: React.ReactNode;
+    endAdormentComponent?: React.ReactNode;
     onKeyEnterAndMeta?: () => void;
 }

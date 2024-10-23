@@ -38,3 +38,13 @@ export interface BaseButtonProps {
     loading?: boolean;
     loadingSize?: number;
 }
+
+export interface BaseSNSButtonProps {
+    width: number;
+    text?:string;
+    height?: number;
+    fontSize?: number;
+    padding?: number;
+    onClick: () => void;
+}
+
