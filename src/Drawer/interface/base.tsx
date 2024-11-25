@@ -5,6 +5,7 @@ export interface BaseDrawerProps {
 
     open: boolean
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    handleClose?: () => void;
     anchor?: "left" | "top" | "right" | "bottom";
     width?: string;
     height?: string;

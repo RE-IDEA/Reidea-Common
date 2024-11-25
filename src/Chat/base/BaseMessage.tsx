@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { Typography, Button, CircularProgress, Stack } from '@mui/material';
 import { BaseMessageProps } from '../interface/base';
 import { UserIcon } from '../../Icon/UserIcon';
+import IMG from "./../image/test.png"
 
 // GridLayout: widthプロパティを自動調整してGridを形成。
 export const BaseMessage: React.FC<BaseMessageProps> = (props) => {
@@ -22,25 +23,43 @@ export const BaseMessage: React.FC<BaseMessageProps> = (props) => {
                     online={props.isOnline}
                  />
             }
-            <Stack width={"100%"} spacing={1} paddingBottom={fontSize/2+"px"} direction={left ? "row" : "row-reverse"} alignItems={"flex-end"}>
-                <Typography maxWidth={props.message_max_width}  textAlign={left ? "left" : "left"} padding={`${fontSize/2.2}px ${fontSize/1.2}px`} borderRadius={borderRadius+"px"}  sx={{ 
-                    borderBottomLeftRadius: left ? "0px" : borderRadius, borderBottomRightRadius: left ? borderRadius+"px" : "0px", 
-                    fontSize:fontSize, bgcolor:props.bgColor ?? "#383E86", color:props.color ?? "white",
-                    whiteSpace:"pre-wrap",
-                    }}>
-                    {props.message}
-                </Typography>
-                <Stack height={"100%"} justifyContent={"center"} alignItems={left ? "flex-start" : "flex-end"}>
-                    {props.viewed &&
+
+            {/* 画像かメッセージか 同時はなし */}
+            {props.image_name ?
+                <Stack width={"100%"} spacing={1} paddingBottom={fontSize/2+"px"} direction={left ? "row" : "row-reverse"} alignItems={"flex-end"}>
+                    <img src={props.image_name} style={{borderRadius:"10px", maxWidth:props.image_maxWidth, objectFit:"cover"}}></img>
+                    <Stack height={"100%"} justifyContent={"center"} alignItems={left ? "flex-start" : "flex-end"}>
+                        {props.viewed &&
+                            <Typography textAlign={left ? "left" : "right"}  sx={{ color:"grey",fontSize: fontSize-2}}>
+                                {"既読"}
+                            </Typography>
+                        }
                         <Typography textAlign={left ? "left" : "right"}  sx={{ color:"grey",fontSize: fontSize-2}}>
-                            {"既読"}
+                            {props.createdAtString}
                         </Typography>
-                    }
-                    <Typography textAlign={left ? "left" : "right"}  sx={{ color:"grey",fontSize: fontSize-2}}>
-                        {props.createdAtString}
-                    </Typography>
+                    </Stack>
                 </Stack>
-            </Stack>
+            :
+                <Stack width={"100%"} spacing={1} paddingBottom={fontSize/2+"px"} direction={left ? "row" : "row-reverse"} alignItems={"flex-end"}>
+                    <Typography maxWidth={props.message_max_width}  textAlign={left ? "left" : "left"} padding={`${fontSize/2.2}px ${fontSize/1.2}px`} borderRadius={borderRadius+"px"}  sx={{ 
+                        borderBottomLeftRadius: left ? "0px" : borderRadius, borderBottomRightRadius: left ? borderRadius+"px" : "0px", 
+                        fontSize:fontSize, bgcolor:props.bgColor ?? "#383E86", color:props.color ?? "white",
+                        whiteSpace:"pre-wrap",
+                        }}>
+                        {props.message}
+                    </Typography>
+                    <Stack height={"100%"} justifyContent={"center"} alignItems={left ? "flex-start" : "flex-end"}>
+                        {props.viewed &&
+                            <Typography textAlign={left ? "left" : "right"}  sx={{ color:"grey",fontSize: fontSize-2}}>
+                                {"既読"}
+                            </Typography>
+                        }
+                        <Typography textAlign={left ? "left" : "right"}  sx={{ color:"grey",fontSize: fontSize-2}}>
+                            {props.createdAtString}
+                        </Typography>
+                    </Stack>
+                </Stack>
+            }
             
 
         </Stack>

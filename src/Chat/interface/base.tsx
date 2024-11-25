@@ -8,6 +8,8 @@ export interface BaseMessageProps {
     isOnline?: boolean;
     display_user?: boolean;
     onClick_user?: () => void;
+    image_name?: string;
+    image_maxWidth?: string | number;
 
     message?:string;
     message_max_width: number;
